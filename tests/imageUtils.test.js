@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { detectExt } from "../src/lib/imageUtils.js";
+import { detectExt, formatLabel } from "../src/lib/imageUtils.js";
 
 describe("detectExt", () => {
   it("从 URL 后缀取扩展名", () => {
@@ -16,5 +16,14 @@ describe("detectExt", () => {
   });
   it("都无法判断时返回 null", () => {
     expect(detectExt("https://x.com/dynamic", "")).toBe(null);
+  });
+});
+
+describe("formatLabel", () => {
+  it("已知扩展名转大写", () => {
+    expect(formatLabel("https://x.com/a.png", "")).toBe("PNG");
+  });
+  it("无法判断时返回 IMG", () => {
+    expect(formatLabel("https://x.com/dynamic", "")).toBe("IMG");
   });
 });

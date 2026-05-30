@@ -21,3 +21,8 @@ export function detectExt(url, mime = "") {
   }
   return null;
 }
+
+export function formatLabel(url, mime = "") {
+  const ext = detectExt(url, mime);
+  return ext ? ext.toUpperCase() : "IMG";
+}
