@@ -41,3 +41,15 @@ export function inferFilename(url, width, height, mime = "") {
   const base = `image-${width}x${height}`;
   return ext ? `${base}.${ext}` : base;
 }
+
+export function dedupeBySrc(images) {
+  const seen = new Set();
+  const out = [];
+  for (const img of images) {
+    if (!img.src) continue;
+    if (seen.has(img.src)) continue;
+    seen.add(img.src);
+    out.push(img);
+  }
+  return out;
+}

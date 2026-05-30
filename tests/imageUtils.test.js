@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { detectExt, formatLabel, inferFilename } from "../src/lib/imageUtils.js";
+import { detectExt, formatLabel, inferFilename, dedupeBySrc } from "../src/lib/imageUtils.js";
 
 describe("detectExt", () => {
   it("从 URL 后缀取扩展名", () => {
@@ -40,5 +40,21 @@ describe("inferFilename", () => {
   });
   it("完全无法判断时回退 image-WxH", () => {
     expect(inferFilename("https://x.com/dynamic", 100, 50, "")).toBe("image-100x50");
+  });
+});
+
+describe("dedupeBySrc", () => {
+  it("相同 src 只保留第一个", () => {
+    const input = [
+      { src: "https://x.com/a.jpg", width: 100, height: 100 },
+      { src: "https://x.com/a.jpg", width: 100, height: 100 },
+      { src: "https://x.com/b.jpg", width: 50, height: 50 },
+    ];
+    const out = dedupeBySrc(input);
+    expect(out).toHaveLength(2);
+    expect(out.map((i) => i.src)).toEqual(["https://x.com/a.jpg", "https://x.com/b.jpg"]);
+  });
+  it("空 src 被剔除", () => {
+    expect(dedupeBySrc([{ src: "" }, { src: null }])).toHaveLength(0);
   });
 });
