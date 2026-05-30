@@ -54,6 +54,9 @@ function renderRow(img) {
   thumb.className = "thumb";
   thumb.src = img.src;
   thumb.loading = "lazy";
+  thumb.addEventListener("error", () => {
+    thumb.style.visibility = "hidden";
+  });
 
   const meta = document.createElement("div");
   meta.className = "meta";
@@ -81,6 +84,7 @@ function download(img, btn) {
   chrome.runtime.sendMessage(
     { type: "download-image", url: img.src, filename },
     (resp) => {
+      void chrome.runtime.lastError; // 读取以消除未处理告警
       if (resp?.ok) {
         btn.textContent = "✓";
         btn.classList.add("ok");
