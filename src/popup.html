@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <span class="title">图片下载器</span>
+      <span id="count" class="count"></span>
+      <select id="minSize" title="最小尺寸">
+        <option value="0">全部</option>
+        <option value="100" selected>≥100px</option>
+        <option value="300">≥300px</option>
+        <option value="500">≥500px</option>
+      </select>
+    </header>
+    <ul id="list" class="list"></ul>
+    <p id="empty" class="empty" hidden>未找到图片</p>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
