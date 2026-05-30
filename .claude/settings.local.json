@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\user\\\\\" -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -match 'ccs|ccswitch|claude' } | Select-Object Name, Mode)",
+      "Bash(git clone *)",
+      "Read(//c/Users/user/.claude//**)",
+      "Read(//c/Users/user/.claude/plugins//**)",
+      "Read(//c/Users/user/.claude/plugins/**)",
+      "Bash(echo \"===.claude/config.json===\"; cat /c/Users/user/.claude/config.json; echo \"\"; echo \"===settings.local.json===\"; cat /c/Users/user/.claude/settings.local.json; echo \"\"; echo \"=== ~/.claude.json \\(search enabledPlugins\\) ===\"; grep -o '\"enabledPlugins\":[^}]*}' /c/Users/user/.claude.json 2>&1 | head -5; echo \"exists?\"; ls -la /c/Users/user/.claude.json 2>&1)",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\([p['name'] for p in d['plugins']]\\)\")",
+      "Bash(rm -rf /c/Users/user/.claude/plugins/marketplaces/superpowers-dev)",
+      "Bash(cp -r /d/ClaudeChat/superpowers /c/Users/user/.claude/plugins/marketplaces/superpowers-dev)",
+      "Bash(cp /c/Users/user/.claude/plugins/known_marketplaces.json /c/Users/user/.claude/plugins/known_marketplaces.json.bak)",
+      "Bash(cp /c/Users/user/.claude/settings.json /c/Users/user/.claude/settings.json.bak)",
+      "Bash(python -c \"import json; json.load\\(open\\(r'C:\\\\Users\\\\user\\\\.claude\\\\plugins\\\\known_marketplaces.json',encoding='utf-8'\\)\\); json.load\\(open\\(r'C:\\\\Users\\\\user\\\\.claude\\\\settings.json',encoding='utf-8'\\)\\); print\\('both valid'\\)\")",
+      "Bash(rm -rf /d/ClaudeChat/superpowers)",
+      "Bash(git commit -q -m ' *)"
+    ]
+  }
+}
