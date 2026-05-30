@@ -26,3 +26,18 @@ export function formatLabel(url, mime = "") {
   const ext = detectExt(url, mime);
   return ext ? ext.toUpperCase() : "IMG";
 }
+
+export function inferFilename(url, width, height, mime = "") {
+  try {
+    const path = new URL(url, "https://_").pathname;
+    const last = path.split("/").pop() || "";
+    if (last.includes(".") && !last.startsWith(".")) {
+      return last;
+    }
+  } catch {
+    // 落到回退逻辑
+  }
+  const ext = detectExt(url, mime);
+  const base = `image-${width}x${height}`;
+  return ext ? `${base}.${ext}` : base;
+}

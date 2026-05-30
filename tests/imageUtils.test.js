@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { detectExt, formatLabel } from "../src/lib/imageUtils.js";
+import { detectExt, formatLabel, inferFilename } from "../src/lib/imageUtils.js";
 
 describe("detectExt", () => {
   it("从 URL 后缀取扩展名", () => {
@@ -25,5 +25,20 @@ describe("formatLabel", () => {
   });
   it("无法判断时返回 IMG", () => {
     expect(formatLabel("https://x.com/dynamic", "")).toBe("IMG");
+  });
+});
+
+describe("inferFilename", () => {
+  it("URL 有合法文件名时直接用", () => {
+    expect(inferFilename("https://x.com/pics/cat.jpg", 800, 600, "")).toBe("cat.jpg");
+  });
+  it("去掉 query/hash 后取文件名", () => {
+    expect(inferFilename("https://x.com/cat.png?v=2", 800, 600, "")).toBe("cat.png");
+  });
+  it("无文件名但能判断格式时回退 image-WxH.ext", () => {
+    expect(inferFilename("https://x.com/dynamic", 1920, 1080, "image/webp")).toBe("image-1920x1080.webp");
+  });
+  it("完全无法判断时回退 image-WxH", () => {
+    expect(inferFilename("https://x.com/dynamic", 100, 50, "")).toBe("image-100x50");
   });
 });
