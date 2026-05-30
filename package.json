@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "package": "node scripts/package.mjs"
   },
   "devDependencies": {
+    "adm-zip": "^0.5.16",
     "vitest": "^2.0.0",
     "jsdom": "^25.0.0"
   }

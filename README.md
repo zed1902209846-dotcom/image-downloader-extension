@@ -22,8 +22,11 @@
 ```bash
 npm install      # 安装依赖
 npm test         # 运行单元测试 (Vitest)
+npm run package  # 打包为商店可上传的 dist/image-downloader-v<version>.zip
 node scripts/gen-icons.mjs   # 重新生成图标
 ```
+
+上架相关文档：[`PRIVACY.md`](PRIVACY.md)（隐私政策）、[`STORE_LISTING.md`](STORE_LISTING.md)（商店文案与上架清单）。
 
 ## 项目结构
 
