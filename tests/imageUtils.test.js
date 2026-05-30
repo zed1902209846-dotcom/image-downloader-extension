@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { detectExt, formatLabel, inferFilename, dedupeBySrc } from "../src/lib/imageUtils.js";
+import { detectExt, formatLabel, inferFilename, dedupeBySrc, filterByMinSize } from "../src/lib/imageUtils.js";
 
 describe("detectExt", () => {
   it("从 URL 后缀取扩展名", () => {
@@ -56,5 +56,23 @@ describe("dedupeBySrc", () => {
   });
   it("空 src 被剔除", () => {
     expect(dedupeBySrc([{ src: "" }, { src: null }])).toHaveLength(0);
+  });
+});
+
+describe("filterByMinSize", () => {
+  const imgs = [
+    { src: "a", width: 50, height: 400 },
+    { src: "b", width: 200, height: 200 },
+    { src: "c", width: 0, height: 0 },
+  ];
+  it("minSize=0 返回全部", () => {
+    expect(filterByMinSize(imgs, 0)).toHaveLength(3);
+  });
+  it("宽或高任一小于阈值即剔除", () => {
+    const out = filterByMinSize(imgs, 100);
+    expect(out.map((i) => i.src)).toEqual(["b"]);
+  });
+  it("未知尺寸(0)在 minSize>0 时被剔除", () => {
+    expect(filterByMinSize(imgs, 100).some((i) => i.src === "c")).toBe(false);
   });
 });

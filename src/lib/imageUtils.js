@@ -53,3 +53,8 @@ export function dedupeBySrc(images) {
   }
   return out;
 }
+
+export function filterByMinSize(images, minSize) {
+  if (!minSize) return images.slice();
+  return images.filter((i) => i.width >= minSize && i.height >= minSize);
+}
