@@ -1,3 +1,6 @@
 node_modules/
 dist/
 *.zip
+
+# 本地 Claude Code 配置（不进仓库）
+.claude/
