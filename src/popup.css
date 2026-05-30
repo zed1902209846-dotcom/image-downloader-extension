@@ -1,0 +1,16 @@
+* { box-sizing: border-box; }
+body { width: 420px; max-height: 560px; margin: 0; font: 13px/1.4 system-ui, sans-serif; }
+.bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid #e3e3e3; position: sticky; top: 0; background: #fff; }
+.title { font-weight: 600; }
+.count { color: #888; margin-left: auto; }
+.list { list-style: none; margin: 0; padding: 0; }
+.row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-bottom: 1px solid #f0f0f0; }
+.thumb { width: 48px; height: 48px; object-fit: contain; background: #f6f6f6; border-radius: 4px; flex: none; }
+.meta { min-width: 0; flex: 1; }
+.res { font-weight: 600; }
+.sub { color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dl { flex: none; padding: 4px 10px; border: 1px solid #ccc; border-radius: 4px; background: #fafafa; cursor: pointer; }
+.dl:disabled { opacity: 0.5; cursor: default; }
+.dl.ok { color: #137333; border-color: #137333; }
+.dl.err { color: #c5221f; border-color: #c5221f; }
+.empty { text-align: center; color: #888; padding: 24px; }
