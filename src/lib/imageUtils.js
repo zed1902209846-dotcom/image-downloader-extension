@@ -58,3 +58,9 @@ export function filterByMinSize(images, minSize) {
   if (!minSize) return images.slice();
   return images.filter((i) => i.width >= minSize && i.height >= minSize);
 }
+
+export function sortByResolution(images) {
+  return images
+    .slice()
+    .sort((a, b) => b.width * b.height - a.width * a.height);
+}
