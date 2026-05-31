@@ -1,5 +1,7 @@
 # 图片下载器 (Image Downloader)
 
+**中文** | [English](README.en.md)
+
 一个 Chrome / Edge (Manifest V3) 浏览器扩展：扫描当前页面所有 `<img>` 图片，在弹窗里显示**缩略图、原始分辨率、文件名/格式**，并支持逐张下载。
 
 ## 功能
